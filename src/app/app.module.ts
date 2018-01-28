@@ -1,9 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgReduxModule } from '@angular-redux/store';
+import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardSummaryModule } from './card-summary/card-summary.module';
+import { StoreModule } from './store/store.module';
+import { routes } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,10 +15,13 @@ import { CardSummaryModule } from './card-summary/card-summary.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    CardSummaryModule
+    RouterModule.forRoot(routes),
+    NgReduxModule,
+    NgReduxRouterModule,
+    CardSummaryModule,
+    StoreModule
   ],
-  providers: [],
+  providers: [NgReduxRouter],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
